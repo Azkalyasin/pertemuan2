@@ -29,7 +29,40 @@
         }
 
         const apiUrl = `https://api.weatherapi.com/v1/current.json?key=1fc49bf2bf724ca58c163944250810&q=${kota}&aqi=no`;
-    })
+
+        $.ajax({
+          url: apiUrl,
+          method: "GET",
+          success: function (data) {
+            console.log(data);
+
+            const v = document.getElementById("tampilan");
+            const l = document.getElementById("lokasi");
+
+            let lokasi = data.location.name;
+            let negara = data.location.country;
+            let provinsi = data.location.region;
+            let kecamatan = data.location.tz_id;
+            let suhu = data.current.temp_c;
+            let latitude = data.location.lat;
+            let longitude = data.location.lon;
+
+            l.innerHTML = `<strong>${lokasi}, ${negara}</strong>`;
+
+            v.innerHTML = `
+              <p><b>Kecamatan:</b> ${kecamatan}</p>
+              <p><b>Kecamatan:</b> ${provinsi}</p>
+              <p><b>Suhu:</b> ${suhu} °C</p>
+              <p><b>Latitude:</b> ${latitude}</p>
+              <p><b>Longitude:</b> ${longitude}</p>
+
+            `;
+          },
+          error: function () {
+            $("#tampilan").html("❌ Data tidak ditemukan atau terjadi kesalahan.");
+          },
+        });
+      });
     </script>
   </body>
 </html>
