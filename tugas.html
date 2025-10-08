@@ -19,6 +19,15 @@
     <hr />
     <p id="lokasi"></p>
     <div id="tampilan"></div>
-    
+    <script>
+      $("#btnCek").click(function () {
+        const kota = $("#inputLokasi").val().trim();
+
+        if (!kota) {
+          alert("Masukkan nama kota terlebih dahulu!");
+          return;
+        }
+    })
+    </script>
   </body>
 </html>
